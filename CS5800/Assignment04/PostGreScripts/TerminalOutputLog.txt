@@ -1,0 +1,43 @@
+Last login: Sun Oct 31 19:44:27 on ttys000
+isiddharth@uv2a-134-71-141-183 ~ % /Applications/Postgres.app/Contents/Versions/14/bin/psql -p5432 "postgres"
+psql (14.0)
+Type "help" for help.
+
+postgres=# CREATE DATABASE assignment;
+CREATE DATABASE
+postgres=# \l
+                                   List of databases
+    Name    |   Owner    | Encoding |   Collate   |    Ctype    |   Access privileges   
+------------+------------+----------+-------------+-------------+-----------------------
+ assignment | isiddharth | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ isiddharth | isiddharth | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres   | postgres   | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0  | postgres   | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+            |            |          |             |             | postgres=CTc/postgres
+ template1  | postgres   | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+            |            |          |             |             | postgres=CTc/postgres
+(5 rows)
+
+postgres=# \c assignment;
+You are now connected to database "assignment" as user "isiddharth".
+assignment=# CREATE TABLE users (
+assignment(# id INTEGER NOT NULL,
+assignment(# name VARCHAR(40) NOT NULL,
+assignment(# CONSTRAINT users_pk PRIMARY KEY (id)
+assignment(# );
+CREATE TABLE
+assignment=# CREATE TABLE comments (
+assignment(# id INTEGER NOT NULL,
+assignment(# id_user INTEGER NOT NULL,
+assignment(# text VARCHAR(400) NOT NULL,
+assignment(# CONSTRAINT comments_pk PRIMARY KEY (id, id_user)
+assignment(# );
+CREATE TABLE
+assignment=# ALTER TABLE comments ADD CONSTRAINT users_comments_fk
+assignment-# FOREIGN KEY (id_user)
+assignment-# REFERENCES users (id)
+assignment-# ON DELETE NO ACTION
+assignment-# ON UPDATE NO ACTION
+assignment-# NOT DEFERRABLE;
+ALTER TABLE
+assignment=# 
